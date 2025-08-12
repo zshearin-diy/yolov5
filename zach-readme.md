@@ -35,3 +35,10 @@ python3 detect.py --source 0 --weights yolov5s.pt --conf 0.25
 training command:
 python3 train.py --img 640 --batch 2 --epochs 60 --data data/coco128.yaml --weights yolov5s.pt
 
+## IF YOU'RE HERE AFTER NOT USING THIS FOR A WHILE
+Run this:
+python3 detect.py --source 0 --weights yolov5s.pt --conf 0.25
+
+This will run the detection using standard weights that were present before I made any changes.  The code, though, will detect 'dog' and 'sofa' object, and it will play a noise if the positioning of 'dog' is higher than sofa and within the bounds (aka we can assume dog is on sofa - unless there's space behind the sofa and she's hanging there or something). Didn't configure git/didn't want to add this raspberry pi to my main github (because it's tied to work and I would have to configure MFA and I don't feel like doing it).
+
+

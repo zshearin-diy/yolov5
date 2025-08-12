@@ -1,4 +1,5 @@
-# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+#
+#YOLOv5 by Ultralytics, GPL-3.0 license
 """
 Run inference on images, videos, directories, streams, etc.
 
@@ -48,6 +49,9 @@ from utils.torch_utils import select_device, time_sync
 
 import pygame
 import time 
+import pydub
+from pydub import AudioSegment
+from pydub.playback import play
 
 @torch.no_grad()
 def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
@@ -182,11 +186,11 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     c = int(cls)
-                    if c == 0:
+                    if c == 57:
                        #print("observed a couch")
                        couchYLocationBottom = int(xyxy[3])
                        print(couchYLocationBottom)
-                    if c == 1:
+                    if c == 16:
                         #print("observed Jenny")
                         jennyYLocationBottom = int(xyxy[3])
                         print(jennyYLocationBottom)
@@ -209,11 +213,11 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
                 if jennyYLocationBottom != 0 and couchYLocationBottom != 0:
-                    if jennyYLocationBottom + 80 < couchYLocationBottom:
-                        print("JENNY IS ON THE COUCH - SCREAM!")
-                        my_sound.play()
-                        time.sleep(3)
-                        my_sound.stop()
+                   if jennyYLocationBottom + 40 < couchYLocationBottom:
+                       print("JENNY IS ON THE COUCH - SCREAM!")
+                       my_sound.play()
+                       time.sleep(3)
+                       my_sound.stop()
                 couchYLocationBottom = 0
                 jennyYLocationBottom = 0
             # Stream results
